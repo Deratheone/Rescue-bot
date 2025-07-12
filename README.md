@@ -163,6 +163,13 @@ Power: 5V supply for motors, 3.3V for sensors
 **Result**: 🥇 **First Prize**  
 **Category**: Microprocessor-based Innovation
 
+## 👥 Team Members
+
+- Deeraj P Menon (me)
+- Hithek Siva
+- N Navaneeth
+- Juliya George
+- Gopika E
 
 ---
 
