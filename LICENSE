@@ -1,0 +1,85 @@
+MIT License
+
+Copyright (c) 2025 Team Zenith - RescueBot
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## 🏆 About Team Zenith
+
+Team Zenith is the **First Prize Winner** of the Hertz Microprocessor Hackathon 
+conducted by ECSA (Electronics and Communication Students Association).
+
+**Project**: RescueBot - "Reaching New Heights in Innovation and Rescue Robotics"
+
+**Achievement**: 🥇 First Prize Winner
+**Event**: Hertz Microprocessor Hackathon
+**Organizer**: ECSA (Electronics and Communication Students Association)
+**Year**: 2025
+
+## 📝 Project Description
+
+RescueBot is a Wi-Fi-controlled robotic system designed to assist in hazardous 
+environments where human presence is risky or impractical. The system features:
+
+- Remote Wi-Fi control via web interface
+- Autonomous obstacle avoidance
+- Gas detection for hazardous environments  
+- Human motion detection for search and rescue
+- Emergency alert and communication systems
+- Cost-effective design under ₹2000
+
+## 🤝 Contributing
+
+We welcome contributions to improve RescueBot! Whether you're interested in:
+- Hardware optimizations
+- Software enhancements
+- Documentation improvements
+- New feature implementations
+
+Please feel free to fork this repository and submit pull requests.
+
+## 📞 Contact
+
+For questions, collaborations, or more information about our project:
+- This repository serves as the complete documentation of our award-winning project
+- All code, documentation, and design files are open source under the MIT License
+
+## 🎯 Educational Use
+
+This project is perfect for:
+- 🎓 Educational institutions teaching robotics and IoT
+- 🔬 Research projects in autonomous systems
+- 🏆 Robotics competitions and hackathons  
+- 💡 Inspiration for next-generation rescue systems
+
+## 🙏 Acknowledgments
+
+We thank:
+- **ECSA** for organizing the Hertz Microprocessor Hackathon
+- The **hackathon judges** for recognizing our innovation
+- **Open source community** for the libraries and tools that made this possible
+- **Educational institutions** that foster innovation and learning
+
+---
+
+*"Innovation in robotics isn't just about technology—it's about saving lives and making the world safer for everyone."*
+
+**Team Zenith - Reaching New Heights in Innovation and Rescue Robotics**

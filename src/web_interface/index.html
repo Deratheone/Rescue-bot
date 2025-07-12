@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RescueBot Control</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+    /* Animated Background */
+    body {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(-45deg, #010a43, #01102a, #000428);
+      background-size: 400% 400%;
+      color: #fff;
+      animation: backgroundShift 15s infinite alternate ease-in-out;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    h1 {
+      font-size: 50px;
+      color: #0ff;
+      text-shadow: 0 0 20px #0ff, 0 0 40px #00f;
+      animation: neonGlow 1.5s infinite alternate;
+    }
+
+    @keyframes neonGlow {
+      0% { text-shadow: 0 0 10px #0ff, 0 0 30px #00f; }
+      100% { text-shadow: 0 0 30px #0ff, 0 0 50px #00f; }
+    }
+
+    select {
+      font-size: 18px;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(0, 255, 255, 0.8);
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    }
+
+    select:hover {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 1);
+    }
+
+    /* Buttons */
+    .button {
+      width: 100px;
+      height: 100px;
+      font-size: 40px;
+      background: rgba(0, 255, 255, 0.2);
+      color: #0ff;
+      border: 3px solid rgba(0, 255, 255, 0.8);
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      text-shadow: 0 0 10px #0ff, 0 0 15px #00f;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    .button:hover {
+      background: rgba(0, 255, 255, 0.4);
+      box-shadow: 0 0 40px #0ff;
+      transform: translateY(-5px);
+    }
+
+    /* Grid Layout */
+    .container {
+      display: grid;
+      grid-template-areas: 
+        ". up ."
+        "left stop right"
+        ". down .";
+      grid-gap: 15px;
+      justify-items: center;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .up { grid-area: up; }
+    .left { grid-area: left; }
+    .right { grid-area: right; }
+    .down { grid-area: down; }
+    .stop { 
+      grid-area: stop; 
+      background: rgba(255, 0, 0, 0.8);
+      color: white;
+      font-size: 30px;
+      width: 80px;
+      height: 80px;
+      border: 3px solid rgba(255, 0, 0, 0.8);
+      text-shadow: 0 0 10px red, 0 0 20px darkred;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    }
+
+    .stop:hover {
+      background: rgba(255, 0, 0, 1);
+      box-shadow: 0 0 40px red;
+      transform: translateY(-5px);
+    }
+
+    /* Alert Buttons */
+    .alert-container {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .alert-button {
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      text-transform: uppercase;
+    }
+
+    .sos {
+      background: rgba(255, 0, 0, 0.7);
+      color: white;
+      box-shadow: 0 0 20px red;
+    }
+
+    .gas {
+      background: rgba(255, 165, 0, 0.7);
+      color: black;
+      box-shadow: 0 0 20px orange;
+    }
+
+    .gas.active {
+      background: rgba(255, 165, 0, 1);
+      color: white;
+      box-shadow: 0 0 40px orange, 0 0 80px red;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .motion {
+      background: rgba(0, 255, 255, 0.7);
+      color: black;
+      box-shadow: 0 0 20px cyan;
+    }
+
+    /* Hide Controls Initially */
+    #wifi-controls, #autonomous-controls {
+      display: none;
+    }
+
+    /* Sensor Readings */
+    .sensor-readings {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      width: 80%;
+      max-width: 500px;
+    }
+
+    .sensor-value {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+
+    /* Bot Status */
+    #bot-status {
+      font-size: 24px;
+      margin-top: 20px;
+      animation: pulseGlow 1.5s infinite alternate;
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    @keyframes pulseGlow {
+      0% { text-shadow: 0 0 10px #0ff; }
+      100% { text-shadow: 0 0 30px #0ff; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>RescueBot Control</h1>
+
+  <label for="mode">Choose Mode:</label>
+  <select id="mode" onchange="toggleControls()">
+    <option value="">-- Select Mode --</option>
+    <option value="wifi">WiFi Mode</option>
+    <option value="autonomous">Autonomous Mode</option>
+    <option value="idle">Idle Mode</option>
+  </select>
+
+  <div class="alert-container">
+    <button class="alert-button sos" onclick="sendRequest('/sos-alert')">SOS Alert</button>
+    <button id="gas-alert-btn" class="alert-button gas" onclick="sendRequest('/gas-alert')">Gas Alert</button>
+    <button class="alert-button motion" onclick="sendRequest('/motion-alert')">Motion Alert</button>
+  </div>
+
+  <div class="sensor-readings">
+    <div class="sensor-value">
+      <span>Gas Level:</span>
+      <span id="gas-value">0</span>
+    </div>
+    <div class="sensor-value">
+      <span>Distance:</span>
+      <span id="distance-value">0 cm</span>
+    </div>
+  </div>
+
+  <!-- WiFi Controls (changed from Bluetooth) -->
+  <div id="wifi-controls">
+    <div class="container">
+      <button class="button up" onclick="sendRequest('/forward')">&#x2191;</button> 
+      <button class="button left" onclick="sendRequest('/left')">&#x2190;</button> 
+      <button class="button stop" onclick="sendRequest('/stop')">⏹</button> 
+      <button class="button right" onclick="sendRequest('/right')">&#x2192;</button> 
+      <button class="button down" onclick="sendRequest('/backward')">&#x2193;</button> 
+    </div>
+  </div>
+
+  <!-- Autonomous Controls -->
+  <div id="autonomous-controls">
+    <button class="button" onclick="sendRequest('/autonomous-start')">Start</button>
+    <button class="button" onclick="sendRequest('/autonomous-stop')">Stop</button>
+  </div>
+
+  <div id="bot-status">Bot Status: Connected</div>
+
+  <script>
+    function toggleControls() {
+      let mode = document.getElementById("mode").value;
+      document.getElementById("wifi-controls").style.display = mode === "wifi" ? "block" : "none";
+      document.getElementById("autonomous-controls").style.display = mode === "autonomous" ? "block" : "none";
+      
+      if (mode === "idle") {
+        sendRequest('/stop');
+      } else if (mode === "autonomous") {
+        sendRequest('/autonomous-stop'); // Reset autonomous mode when switching to it
+      }
+    }
+
+    function sendRequest(url) {
+      fetch(url)
+        .then(response => {
+          if (response.ok) {
+            console.log("Command sent successfully");
+            document.getElementById("bot-status").innerHTML = "Bot Status: Active - " + url.substring(1);
+          } else {
+            console.error("Failed to send command");
+            document.getElementById("bot-status").innerHTML = "Bot Status: Error";
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          document.getElementById("bot-status").innerHTML = "Bot Status: Connection Error";
+        });
+    }
+    
+    // Update sensor readings periodically
+    setInterval(function() {
+      fetch('/sensor-data')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("gas-value").innerHTML = data.gasLevel;
+          document.getElementById("distance-value").innerHTML = data.distance + " cm";
+          
+          // Update gas alert button
+          if (data.gasDetected) {
+            document.getElementById("gas-alert-btn").classList.add("active");
+          } else {
+            document.getElementById("gas-alert-btn").classList.remove("active");
+          }
+        })
+        .catch(error => {
+          console.error("Sensor update error:", error);
+        });
+    }, 1000);
+  </script>
+
+</body>
+</html>
