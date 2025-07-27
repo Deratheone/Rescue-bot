@@ -41,7 +41,7 @@ RescueBot is a Wi-Fi-controlled robotic system designed to assist in hazardous e
 - **🔄 Autonomous Operation** - Smart pathfinding with dynamic obstacle scanning
 - **🆘 Emergency Alert System** - SOS, Gas, and Motion alert buttons
 - **📊 Live Sensor Data** - Real-time distance and gas level readings
-- **⚡ Cost-Effective** - Total project cost under ₹2000
+- **💰 Cost-Effective** - Total project cost under ₹2000
 
 ## 🛠️ Hardware Components
 
@@ -156,7 +156,7 @@ Power: 5V supply for motors, 3.3V for sensors
 3. **Web Access**: Connect to ESP32's IP address via browser
 4. **Sensor Calibration**: Gas threshold set to 1000 (adjustable)
 
-## 🏆 Team Zenith
+## 🏆 Team Zenith 
 
 **Event**: Hertz Microprocessor Hackathon  
 **Organizer**: ECSA (Electronics and Communication Students Association)  
